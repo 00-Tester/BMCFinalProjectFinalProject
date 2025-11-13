@@ -1,0 +1,220 @@
+import 'package:ecommerce_app/providers/cart_provider.dart';
+import 'package:ecommerce_app/screens/payment_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+class CartItemWidget extends StatelessWidget {
+  final String id;
+  final String productId;
+  final String title;
+  final double price;
+  final int quantity;
+  final String imageUrl;
+
+  const CartItemWidget({
+    super.key,
+    required this.id,
+    required this.productId,
+    required this.title,
+    required this.price,
+    required this.quantity,
+    required this.imageUrl,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Dismissible(
+      key: ValueKey(id),
+      background: Container(
+        color: Theme.of(context).colorScheme.error,
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.only(right: 20),
+        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+        child: const Icon(
+          Icons.delete,
+          color: Colors.white,
+          size: 40,
+        ),
+      ),
+      direction: DismissDirection.endToStart,
+      confirmDismiss: (direction) {
+        return showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            title: const Text('Are you sure?'),
+            content: const Text('Do you want to remove the item from the cart?'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop(false);
+                },
+                child: const Text('No'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop(true);
+                },
+                child: const Text('Yes'),
+              ),
+            ],
+          ),
+        );
+      },
+      onDismissed: (direction) {
+        Provider.of<CartProvider>(context, listen: false).removeItem(productId);
+      },
+      child: Card(
+        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: ListTile(
+            leading: SizedBox(
+              width: 50,
+              child: Image.network(
+                imageUrl,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) =>
+                const Icon(Icons.broken_image),
+              ),
+            ),
+            title: Text(title),
+            subtitle: Text('Total: ₱${(price * quantity).toStringAsFixed(2)}'),
+            trailing: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('₱${price.toStringAsFixed(2)}'),
+                Text('x $quantity'),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CartScreen extends StatelessWidget {
+  const CartScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final cart = Provider.of<CartProvider>(context);
+    final cartItems = cart.items;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Your Cart'),
+      ),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: ListView.builder(
+              itemCount: cartItems.length,
+              itemBuilder: (ctx, i) {
+                final item = cartItems[i];
+                return CartItemWidget(
+                  id: item.id,
+                  productId: item.id,
+                  title: item.name,
+                  price: item.price,
+                  quantity: item.quantity,
+                  imageUrl: item.imageUrl,
+                );
+              },
+            ),
+          ),
+
+          const SizedBox(height: 10),
+
+          Card(
+            margin: const EdgeInsets.all(16),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Subtotal:',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        '₱${cart.subtotal.toStringAsFixed(2)}',
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 8),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'VAT (12%):',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        '₱${cart.vat.toStringAsFixed(2)}',
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+
+                  const Divider(height: 20, thickness: 1),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Total:',
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        '₱${cart.totalPrice.toStringAsFixed(2)}',
+                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.deepPurple),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: (cart.subtotal <= 0)
+                    ? null
+                    : () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => PaymentScreen(
+                        totalAmount: cart.totalPrice,
+                      ),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  elevation: 5,
+                ),
+                child: const Text(
+                  'PROCEED TO PAYMENT',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
