@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "230041963201",
+    "project_id": "ignacio-ecommerce-app",
+    "storage_bucket": "ignacio-ecommerce-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:230041963201:android:3b874cf7b7b3f4a323a240",
+        "android_client_info": {
+          "package_name": "com.example.ecommerce_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6we2QhAQSL8ij-ogUKnUwH7b0KvtJyQI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
