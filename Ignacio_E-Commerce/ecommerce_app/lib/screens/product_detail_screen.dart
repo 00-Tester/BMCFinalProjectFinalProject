@@ -38,7 +38,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     final String name = widget.productData['name'] ?? 'Product';
     final String description = widget.productData['description'] ?? 'No description.';
     final double price = (widget.productData['price'] as num?)?.toDouble() ?? 0.0;
+<<<<<<< HEAD
     final String imageUrl = widget.productData['imageUrl'] ?? 'https://imgur.com/INfAu3k';
+=======
+    final String imageUrl = widget.productData['imageUrl'] ?? 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fpeanutpressbooks.com%2Fproducts%2Fmetropolis&psig=AOvVaw0vh75eR8dUlF4BmKZJRlbu&ust=1763025575070000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCJin9bCk7JADFQAAAAAdAAAAABAE';
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
 
     final cart = Provider.of<CartProvider>(context, listen: false);
 
@@ -49,6 +53,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+<<<<<<< HEAD
             Container(
               height: 300,
               width: double.infinity,
@@ -105,6 +110,18 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         ),
                       ),
                     ),
+=======
+            Image.network(
+              imageUrl,
+              height: 300,
+              width: double.infinity,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) => Container(
+                height: 300,
+                color: Colors.grey[300],
+                child: const Center(child: Text('Image Unavailable')),
+              ),
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),

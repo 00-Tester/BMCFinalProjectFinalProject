@@ -2,6 +2,7 @@
   "images" : [
     {
       "filename" : "background.png",
+<<<<<<< HEAD
       "idiom" : "universal"
     },
     {
@@ -13,6 +14,18 @@
       ],
       "filename" : "darkbackground.png",
       "idiom" : "universal"
+=======
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
     }
   ],
   "info" : {

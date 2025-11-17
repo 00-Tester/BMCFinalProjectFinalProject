@@ -67,9 +67,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
+<<<<<<< HEAD
   Future<void> _signOut() async {
     await _auth.signOut();
     if (mounted) {
+=======
+  // MODIFIED: The _signOut function now handles navigation
+  Future<void> _signOut() async {
+    await _auth.signOut();
+    if (mounted) {
+      // Navigate back to the main home screen, removing all previous routes.
+      // This ensures the main screen (which should check auth status) is rebuilt.
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
       Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
     }
   }

@@ -70,6 +70,7 @@ class CartItemWidget extends StatelessWidget {
           child: ListTile(
             leading: SizedBox(
               width: 50,
+<<<<<<< HEAD
               height: 50,
               child: Container(
                 color: Colors.grey[200],
@@ -96,6 +97,13 @@ class CartItemWidget extends StatelessWidget {
                         color: Colors.grey[300],
                         child: const Icon(Icons.image_not_supported, size: 24, color: Colors.grey),
                       ),
+=======
+              child: Image.network(
+                imageUrl,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) =>
+                const Icon(Icons.broken_image),
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
               ),
             ),
             title: Text(title),
@@ -195,7 +203,11 @@ class CartScreen extends StatelessWidget {
                       ),
                       Text(
                         '₱${cart.totalPrice.toStringAsFixed(2)}',
+<<<<<<< HEAD
                         style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF6B2C1A)),
+=======
+                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.deepPurple),
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
                       ),
                     ],
                   ),

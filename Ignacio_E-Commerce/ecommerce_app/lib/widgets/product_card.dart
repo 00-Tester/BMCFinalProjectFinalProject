@@ -26,6 +26,7 @@ class ProductCard extends StatelessWidget {
           children: [
             Expanded(
               flex: 3,
+<<<<<<< HEAD
               child: Container(
                 color: Colors.grey[200],
                 child: imageUrl.isNotEmpty
@@ -69,6 +70,22 @@ class ProductCard extends StatelessWidget {
                           child: Icon(Icons.image_not_supported, size: 40, color: Colors.grey),
                         ),
                       ),
+=======
+              child: Image.network(
+                imageUrl,
+                fit: BoxFit.cover,
+
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return const Center(child: CircularProgressIndicator());
+                },
+
+                errorBuilder: (context, error, stackTrace) {
+                  return const Center(
+                    child: Icon(Icons.broken_image, size: 40, color: Colors.grey),
+                  );
+                },
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
               ),
             ),
 

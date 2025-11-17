@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import 'package:ecommerce_app/screens/auth_wrapper.dart';
+=======
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
 import 'package:ecommerce_app/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -35,6 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
         password: _passwordController.text.trim(),
       );
 
+<<<<<<< HEAD
       if (!mounted) return;
 
       Navigator.of(context).pushAndRemoveUntil(
@@ -89,6 +93,30 @@ class _LoginScreenState extends State<LoginScreen> {
           _isLoading = false;
         });
       }
+=======
+    } on FirebaseAuthException catch (e) {
+      String message = 'An error occurred';
+      if (e.code == 'user-not-found') {
+        message = 'No user found for that email.';
+      } else if (e.code == 'wrong-password') {
+        message = 'Wrong password provided.';
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } catch (e) {
+      print(e);
+    }
+
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+      });
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
     }
   }
 
@@ -160,7 +188,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
                   ),
+<<<<<<< HEAD
                   onPressed: _isLoading ? null : _login,
+=======
+                  onPressed: _login,
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
                   child: _isLoading
                       ?const CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.white),

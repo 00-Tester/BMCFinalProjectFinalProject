@@ -12,12 +12,16 @@ class AdminOrderScreen extends StatefulWidget {
 class _AdminOrderScreenState extends State<AdminOrderScreen> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+<<<<<<< HEAD
   Future<void> _updateOrderStatus(
       String orderId,
       String newStatus,
       String userId,
       String orderSummary,
       ) async {
+=======
+  Future<void> _updateOrderStatus(String orderId, String newStatus, String userId) async {
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
     try {
       await _firestore.collection('orders').doc(orderId).update({
         'status': newStatus,
@@ -26,7 +30,11 @@ class _AdminOrderScreenState extends State<AdminOrderScreen> {
       await _firestore.collection('notifications').add({
         'userId': userId,
         'title': 'Order Status Updated',
+<<<<<<< HEAD
         'body': 'Your order for $orderSummary is now "$newStatus".',
+=======
+        'body': 'Your order ($orderId) has been updated to "$newStatus".',
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
         'orderId': orderId,
         'createdAt': FieldValue.serverTimestamp(),
         'isRead': false,
@@ -46,7 +54,11 @@ class _AdminOrderScreenState extends State<AdminOrderScreen> {
     }
   }
 
+<<<<<<< HEAD
   void _showStatusDialog(String orderId, String currentStatus, String userId, String orderSummary) {
+=======
+  void _showStatusDialog(String orderId, String currentStatus, String userId) {
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
     showDialog(
       context: context,
       builder: (dialogContext) {
@@ -61,7 +73,11 @@ class _AdminOrderScreenState extends State<AdminOrderScreen> {
                 title: Text(status),
                 trailing: currentStatus == status ? const Icon(Icons.check) : null,
                 onTap: () {
+<<<<<<< HEAD
                   _updateOrderStatus(orderId, status, userId, orderSummary);
+=======
+                  _updateOrderStatus(orderId, status, userId);
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
                   Navigator.of(dialogContext).pop();
                 },
               );
@@ -78,6 +94,7 @@ class _AdminOrderScreenState extends State<AdminOrderScreen> {
     );
   }
 
+<<<<<<< HEAD
   String _buildOrderSummary(List<dynamic>? items) {
     final parsedItems = items ?? [];
     if (parsedItems.isEmpty) {
@@ -99,6 +116,8 @@ class _AdminOrderScreenState extends State<AdminOrderScreen> {
     return '$firstName and $remainingCount other item${remainingCount > 1 ? 's' : ''}';
   }
 
+=======
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,8 +158,11 @@ class _AdminOrderScreenState extends State<AdminOrderScreen> {
               final double totalPrice = (orderData['totalPrice'] as num? ?? 0.0).toDouble();
               final String formattedTotal = '₱${totalPrice.toStringAsFixed(2)}';
               final String userId = orderData['userId'] ?? 'Unknown User';
+<<<<<<< HEAD
               final items = orderData['items'] as List<dynamic>?;
               final orderSummary = _buildOrderSummary(items);
+=======
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
 
               return Card(
                 margin: const EdgeInsets.all(8.0),
@@ -168,7 +190,11 @@ class _AdminOrderScreenState extends State<AdminOrderScreen> {
                   ),
 
                   onTap: () {
+<<<<<<< HEAD
                     _showStatusDialog(order.id, status, userId, orderSummary);
+=======
+                    _showStatusDialog(order.id, status, userId);
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
                   },
                 ),
               );

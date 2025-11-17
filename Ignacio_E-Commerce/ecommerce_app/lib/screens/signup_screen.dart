@@ -53,11 +53,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
       }
 
     } on FirebaseAuthException catch (e) {
+<<<<<<< HEAD
       final errorMessage = e.message ?? 'Failed to create account. Please try again.';
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(errorMessage)),
       );
+=======
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
     } finally {
       if(mounted) {
         setState(() {

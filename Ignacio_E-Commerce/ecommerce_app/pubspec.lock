@@ -57,6 +57,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.0"
+<<<<<<< HEAD
   checked_yaml:
     dependency: transitive
     description:
@@ -73,6 +74,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.2"
+=======
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
   clock:
     dependency: transitive
     description:
@@ -206,6 +209,7 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+<<<<<<< HEAD
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -214,6 +218,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.13.1"
+=======
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -288,6 +294,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.20.2"
+<<<<<<< HEAD
   json_annotation:
     dependency: transitive
     description:
@@ -296,6 +303,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.9.0"
+=======
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
   leak_tracker:
     dependency: transitive
     description:

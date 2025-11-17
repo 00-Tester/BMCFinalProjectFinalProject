@@ -18,6 +18,7 @@ class NotificationIcon extends StatelessWidget {
       stream: FirebaseFirestore.instance
           .collection('notifications')
           .where('userId', isEqualTo: user.uid)
+<<<<<<< HEAD
           .snapshots(),
 
       builder: (context, snapshot) {
@@ -31,6 +32,16 @@ class NotificationIcon extends StatelessWidget {
         return Badge(
           isLabelVisible: hasUnread,
           label: hasUnread ? Text(unreadCount.toString()) : null,
+=======
+          .where('isRead', isEqualTo: false)
+          .snapshots(),
+
+      builder: (context, snapshot) {
+        bool hasUnread = snapshot.hasData && snapshot.data!.docs.isNotEmpty;
+
+        return Badge(
+          isLabelVisible: hasUnread,
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
           child: IconButton(
             icon: const Icon(Icons.notifications_outlined),
             tooltip: 'Notifications',

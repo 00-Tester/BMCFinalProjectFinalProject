@@ -10,6 +10,10 @@ import 'package:provider/provider.dart';
 import 'package:ecommerce_app/screens/order_history_screen.dart';
 import 'package:ecommerce_app/screens/profile_screen.dart';
 import 'package:ecommerce_app/widgets/notification_icon.dart';
+<<<<<<< HEAD
+=======
+import 'package:ecommerce_app/screens/chat_screen.dart';
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -35,7 +39,11 @@ class _HomeScreenState extends State<HomeScreen> {
     try {
       final doc = await FirebaseFirestore.instance
           .collection('users')
+<<<<<<< HEAD
           .doc(_currentUser.uid)
+=======
+          .doc(_currentUser!.uid)
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
           .get();
 
       if (doc.exists && doc.data() != null) {
@@ -124,6 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: <Widget>[
             const DrawerHeader(
               decoration: BoxDecoration(
+<<<<<<< HEAD
                 color: Color(0xFF6B2C1A),
               ),
               child: Text(
@@ -132,6 +141,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.white,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
+=======
+                color: Colors.deepPurple,
+              ),
+              child: Text(
+                'E-Commerce App',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+>>>>>>> daaf3ff007918d1d46173cf43c1035b9099f5f42
                 ),
               ),
             ),
